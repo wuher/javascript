@@ -485,6 +485,7 @@
 
         // ...
     }
+    ```
 
   - For readability, only use single comment line for a variable if
     necessary. Prefer documenting variable in the function documentation.
@@ -536,6 +537,7 @@
             options,
             i;
     }
+    ```
 
 **[⬆ back to top](#table-of-contents)**
 
