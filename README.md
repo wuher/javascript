@@ -624,6 +624,42 @@
     }
     ```
 
+  - Put `else` and `catch` on the same line with closing brace.
+
+    ```javascript
+    // bad
+    if (test) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+    // good
+    if (test) {
+        return 1;
+    } else if (anotherTest) {
+        return 0;
+    } else {
+        return -1;
+    }
+
+    // bad
+    try {
+        dragonsBeHere();
+    }
+    catch (e) {
+        log.error('very bad: ' + e);
+    }
+
+    // good
+    try {
+        dragonsBeHere();
+    } catch (e) {
+        log.error('very bad: ' + e);
+    }
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -753,15 +789,15 @@
       breed: 'Bernese Mountain Dog'
     });
     ```
-  
+
   - Place 1 space after keywords (such as `if`, `for` and `function`).
-   
+
     ```javascript
     // bad
     var foo = function() {
         alert('hello');
     };
-  
+
     // good
     var foo = function () {
         alert('hello');
@@ -1094,16 +1130,16 @@
     the "public" interface.
 
     ```javascript
-    
+
     var mymodule = (function mymodule() {
         var that = {},
             privateCounter = 0;
-        
+
         that.increment = function increment() {
             privateCounter += 1;
             return privateCounter;
         };
-        
+
         return that;
     })();
     ```
