@@ -263,7 +263,7 @@
 
     ```javascript
     // anonymous function expression
-    var anonymous = function() {
+    var anonymous = function () {
       return true;
     };
 
@@ -273,7 +273,7 @@
     };
 
     // immediately-invoked function expression (IIFE)
-    (function() {
+    (function () {
       console.log('Welcome to the Internet. Please follow me.');
     })();
     ```
@@ -403,7 +403,7 @@
 
     ```javascript
     // bad
-    function() {
+    function () {
       test();
       console.log('doing stuff..');
 
@@ -419,7 +419,7 @@
     }
 
     // good
-    function() {
+    function () {
       var name = getName();
 
       test();
@@ -435,7 +435,7 @@
     }
 
     // bad
-    function() {
+    function () {
       var name = getName();
 
       if (!arguments.length) {
@@ -446,7 +446,7 @@
     }
 
     // good
-    function() {
+    function () {
       if (!arguments.length) {
         return false;
       }
@@ -580,7 +580,7 @@
 
       anonymous(); // => TypeError anonymous is not a function
 
-      var anonymous = function() {
+      var anonymous = function () {
         console.log('anonymous function expression');
       };
     }
@@ -698,10 +698,10 @@
     }
 
     // bad
-    function() { return false; }
+    function () { return false; }
 
     // good
-    function() {
+    function () {
       return false;
     }
     ```
@@ -831,17 +831,17 @@
 
     ```javascript
     // bad
-    function() {
+    function () {
     ∙∙∙∙var name;
     }
 
     // bad
-    function() {
+    function () {
     ∙var name;
     }
 
     // good
-    function() {
+    function () {
     ∙∙∙∙var name;
     }
     ```
@@ -876,7 +876,7 @@
 
     ```javascript
     // bad
-    var foo = function() {
+    var foo = function () {
         alert('hello');
     };
 
@@ -900,14 +900,14 @@
 
     ```javascript
     // bad
-    (function(global) {
+    (function (global) {
       // ...stuff...
     })(this);
     ```
 
     ```javascript
     // bad
-    (function(global) {
+    (function (global) {
       // ...stuff...
     })(this);↵
     ↵
@@ -915,7 +915,7 @@
 
     ```javascript
     // good
-    (function(global) {
+    (function (global) {
       // ...stuff...
     })(this);↵
     ```
@@ -1022,19 +1022,19 @@
 
     ```javascript
     // bad
-    (function() {
+    (function () {
       var name = 'Skywalker'
       return name
     })()
 
     // good
-    (function() {
+    (function () {
       var name = 'Skywalker';
       return name;
     })();
 
     // good
-    ;(function() {
+    ;(function () {
       var name = 'Skywalker';
       return name;
     })();
@@ -1155,7 +1155,7 @@
 
     // good
     var thisIsMyObject = {};
-    function thisIsMyFunction() {}
+    function thisIsMyfunction () {}
     var user = new User({
       name: 'Bob Parr'
     });
@@ -1198,25 +1198,25 @@
 
     ```javascript
     // bad
-    function() {
+    function () {
       var self = this;
-      return function() {
+      return function () {
         console.log(self);
       };
     }
 
     // bad
-    function() {
+    function () {
       var _this = this;
-      return function() {
+      return function () {
         console.log(_this);
       };
     }
 
     // good
-    function() {
+    function () {
       var me = this;
-      return function() {
+      return function () {
         console.log(me);
       };
     }
@@ -1301,11 +1301,11 @@
       this.set('lightsaber', lightsaber);
     }
 
-    Jedi.prototype.set = function(key, val) {
+    Jedi.prototype.set = function (key, val) {
       this[key] = val;
     };
 
-    Jedi.prototype.get = function(key) {
+    Jedi.prototype.get = function (key) {
       return this[key];
     };
     ```
@@ -1347,12 +1347,12 @@
 
     ```javascript
     // bad
-    Jedi.prototype.jump = function() {
+    Jedi.prototype.jump = function () {
       this.jumping = true;
       return true;
     };
 
-    Jedi.prototype.setHeight = function(height) {
+    Jedi.prototype.setHeight = function (height) {
       this.height = height;
     };
 
@@ -1361,12 +1361,12 @@
     luke.setHeight(20) // => undefined
 
     // good
-    Jedi.prototype.jump = function() {
+    Jedi.prototype.jump = function () {
       this.jumping = true;
       return this;
     };
 
-    Jedi.prototype.setHeight = function(height) {
+    Jedi.prototype.setHeight = function (height) {
       this.height = height;
       return this;
     };
@@ -1408,7 +1408,7 @@
 
     ...
 
-    $(this).on('listingUpdated', function(e, listingId) {
+    $(this).on('listingUpdated', function (e, listingId) {
       // do something with listingId
     });
     ```
@@ -1421,7 +1421,7 @@
 
     ...
 
-    $(this).on('listingUpdated', function(e, data) {
+    $(this).on('listingUpdated', function (e, data) {
       // do something with data.listingId
     });
     ```
@@ -1439,7 +1439,7 @@
     ```javascript
     // fancyInput/fancyInput.js
 
-    !function(global) {
+    !function (global) {
       'use strict';
 
       var previousFancyInput = global.FancyInput;
@@ -1534,7 +1534,7 @@
   - **Yup.**
 
     ```javascript
-    function() {
+    function () {
       return true;
     }
     ```
