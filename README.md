@@ -457,6 +457,88 @@
     }
     ```
 
+  - Only use single line for each variable.
+
+    ```javascript
+    // bad
+    function () {
+        var count = 0,
+            options = {
+                name: 'Luke',
+                race: 'Jedi'
+            },
+            i;
+
+        // ...
+    }
+
+    // good
+    function () {
+        var count = 0,
+            options,
+            i;
+
+        options = {
+            name: 'Luke',
+            race: 'Jedi
+        };
+
+        // ...
+    }
+    ```
+
+  - For readability, only use single comment line for a variable if
+    necessary. Prefer documenting variable in the function documentation.
+
+    ```javascript
+    // bad
+    function () {
+        var count,
+
+            /* Hash that contain character options.
+             *
+             * @typedef options
+             * @property {String} name - Name of the character.
+             * @property {String} race - Race of the character.
+             */
+             options,
+
+             // index for the for loop.
+             i;
+
+        // ...
+    }
+
+    // better
+    function () {
+        var count,
+            // character's options hash
+            options,
+            i;
+    }
+
+    // good
+    function () {
+        var count,
+            characterOptions,
+            i;
+
+        // ...
+    }
+
+    // good
+    /**
+     * ...
+     *
+     * Internally, character's options are stored in the `options` hash.
+     */
+    function () {
+        var count,
+            options,
+            i;
+    }
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -624,6 +706,42 @@
     }
     ```
 
+  - Put `else` and `catch` on the same line with closing brace.
+
+    ```javascript
+    // bad
+    if (test) {
+        return true;
+    }
+    else {
+        return false;
+    }
+
+    // good
+    if (test) {
+        return 1;
+    } else if (anotherTest) {
+        return 0;
+    } else {
+        return -1;
+    }
+
+    // bad
+    try {
+        dragonsBeHere();
+    }
+    catch (e) {
+        log.error('very bad: ' + e);
+    }
+
+    // good
+    try {
+        dragonsBeHere();
+    } catch (e) {
+        log.error('very bad: ' + e);
+    }
+    ```
+
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -753,15 +871,15 @@
       breed: 'Bernese Mountain Dog'
     });
     ```
-  
+
   - Place 1 space after keywords (such as `if`, `for` and `function`).
-   
+
     ```javascript
     // bad
     var foo = function() {
         alert('hello');
     };
-  
+
     // good
     var foo = function () {
         alert('hello');
@@ -1094,16 +1212,16 @@
     the "public" interface.
 
     ```javascript
-    
+
     var mymodule = (function mymodule() {
         var that = {},
             privateCounter = 0;
-        
+
         that.increment = function increment() {
             privateCounter += 1;
             return privateCounter;
         };
-        
+
         return that;
     })();
     ```
