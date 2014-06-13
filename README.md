@@ -480,7 +480,7 @@
 
         options = {
             name: 'Luke',
-            race: 'Jedi
+            race: 'Jedi'
         };
 
         // ...
