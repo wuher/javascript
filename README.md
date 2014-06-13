@@ -896,7 +896,7 @@
     var x = y + 5;
     ```
 
-  - Place an empty newline at the end of the file.
+  - End files with a single newline character.
 
     ```javascript
     // bad
@@ -906,11 +906,18 @@
     ```
 
     ```javascript
+    // bad
+    (function(global) {
+      // ...stuff...
+    })(this);↵
+    ↵
+    ```
+
+    ```javascript
     // good
     (function(global) {
       // ...stuff...
-    })(this);
-
+    })(this);↵
     ```
 
   - Use indentation when making long method chains.
@@ -1082,7 +1089,6 @@
     ```
 
   - If for whatever reason you are doing something wild and `parseInt` is your bottleneck and need to use Bitshift for [performance reasons](http://jsperf.com/coercion-vs-casting/3), leave a comment explaining why and what you're doing.
-  - **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109)
 
     ```javascript
     // good
@@ -1092,6 +1098,14 @@
      * Number made it a lot faster.
      */
     var val = inputValue >> 0;
+    ```
+
+  - **Note:** Be careful when using bitshift operations. Numbers are represented as [64-bit values](http://es5.github.io/#x4.3.19), but Bitshift operations always return a 32-bit integer ([source](http://es5.github.io/#x11.7)). Bitshift can lead to unexpected behavior for integer values larger than 32 bits. [Discussion](https://github.com/airbnb/javascript/issues/109). Largest signed 32-bit Int is 2,147,483,647:
+
+    ```javascript
+    2147483647 >> 0 //=> 2147483647
+    2147483648 >> 0 //=> -2147483648
+    2147483649 >> 0 //=> -2147483647
     ```
 
   - Booleans:
@@ -1134,14 +1148,14 @@
     // bad
     var OBJEcttsssss = {};
     var this_is_my_object = {};
-    function c() {};
+    function c() {}
     var u = new user({
       name: 'Bob Parr'
     });
 
     // good
     var thisIsMyObject = {};
-    function thisIsMyFunction() {};
+    function thisIsMyFunction() {}
     var user = new User({
       name: 'Bob Parr'
     });
@@ -1239,6 +1253,8 @@
       console.log(msg);
     };
     ```
+
+  - **Note:** IE8 and below exhibit some quirks with named function expressions.  See [http://kangax.github.io/nfe/](http://kangax.github.io/nfe/) for more info.
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1417,7 +1433,7 @@
 
   - The module should start with a `!`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated. [Explanation](https://github.com/airbnb/javascript/issues/44#issuecomment-13063933)
   - The file should be named with camelCase, live in a folder with the same name, and match the name of the single export.
-  - Add a method called noConflict() that sets the exported module to the previous version and returns this one.
+  - Add a method called `noConflict()` that sets the exported module to the previous version and returns this one.
   - Always declare `'use strict';` at the top of the module.
 
     ```javascript
@@ -1606,6 +1622,7 @@
   - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
   - **American Insitutes for Research**: [AIRAST/javascript](https://github.com/AIRAST/javascript)
   - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
+  - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
   - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
   - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
   - **Gawker Media**: [gawkermedia/javascript](https://github.com/gawkermedia/javascript)
@@ -1619,9 +1636,11 @@
   - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
   - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
   - **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
+  - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
   - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
   - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
   - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
+  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
   - **REI**: [reidev/js-style-guide](https://github.com/reidev/js-style-guide)
   - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
   - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
