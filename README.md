@@ -1438,7 +1438,7 @@ All JavaScript files should have the following file header and footer:
 
 ## Functional Style
 
-  - Avoid generic for-loops (i.e. `for (i = 0; i < array.length; i += 1))
+  - Avoid generic for-loops (i.e. `for (i = 0; i < array.length; i += 1)`)
     because
     - They make code difficult to read
     - They may have all kinds of side effects
@@ -1450,15 +1450,15 @@ All JavaScript files should have the following file header and footer:
     [lodash](http://lodash.com/docs) library. When it comes to dealing with
     collections, most of the time it already has what you would otherwise
     have to implement yourself.
-  - Using these functions makes it easy for the reader to immediately
-    understand what the code is doing and they don't (must not) have
-    side effects.
+  - Using these functions makes it easy for the reader to quickly see
+    what the code is supposed to be doing and the reader can trust that the
+    code inside the loop doesn't (must not) have any side effects.
   - `forEach` is the only exception where we allow the code inside the loop to
     have side effects since it has been used for drop-in replacement for more
     traditional `for (i = 0; i < array.length; i += 1)` construct.
   - Sometimes though, for performance reasons for large collections, you may
     want to consider replacing subsequent functional constructs with single
-    for-loop where you do many things at once. This should be vare rare however.
+    for-loop where you do many things at once. This should be vary rare however.
 
 
 **[⬆ back to top](#table-of-contents)**
