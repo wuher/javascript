@@ -1074,6 +1074,7 @@ All JavaScript files should have the following file header and footer:
 
   //
   //  filename.js ends here
+  ```
 
 
 **[⬆ back to top](#table-of-contents)**
