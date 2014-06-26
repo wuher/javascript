@@ -1064,16 +1064,16 @@
 
 All JavaScript files should have the following file header and footer:
 
-    ```javascript
-    //  -*- coding: utf-8 -*-
-    //  filename.js
-    //  created: 2014-05-22 08:10:10
-    //
+  ```javascript
+  //  -*- coding: utf-8 -*-
+  //  filename.js
+  //  created: 2014-05-22 08:10:10
+  //
 
 
 
-    //
-    //  filename.js ends here
+  //
+  //  filename.js ends here
 
 
 **[⬆ back to top](#table-of-contents)**
