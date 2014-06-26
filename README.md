@@ -1500,6 +1500,7 @@ All JavaScript files should have the following file header and footer:
 
   - In Node.js files should be named with camelCase.
   - In Ember projects files should be named with hyphens (e.g. `route-header.js`).
+  - All files should use `utf-8` encoding.
   - Always declare `'use strict';` at the top of the module.
 
 
