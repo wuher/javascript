@@ -19,10 +19,12 @@
   1. [Whitespace](#whitespace)
   1. [Commas](#commas)
   1. [Semicolons](#semicolons)
+  1. [File Headers](#file-headers)
   1. [Type Casting & Coercion](#type-casting--coercion)
   1. [Naming Conventions](#naming-conventions)
   1. [Accessors](#accessors)
   1. [Constructors](#constructors)
+  1. [Functional Style](#functional-style)
   1. [Events](#events)
   1. [Modules](#modules)
   1. [jQuery](#jquery)
@@ -747,7 +749,12 @@
 
 ## Comments
 
-  - Use `/** ... */` for multiline comments. Include a description, specify types and values for all parameters and return values.
+  - Use `/** ... */` for multiline comments. Include a description, specify
+    types and values for necessary parameters and return values.
+  - First sentence of the function docstring should fit on one line and
+    should prescribe the function's effect as a command ("Do this",
+    "Return that"), not as a description; e.g. don't write "Returns the
+    pathname ..."
   - Use [JSDoc](http://usejsdoc.org)
 
     ```javascript
@@ -766,11 +773,13 @@
 
     // good
     /**
-     * make() returns a new element
-     * based on the passed in tag name
+     * Return a new element.
      *
-     * @param {String} tag
-     * @return {Element} element
+     * This is a longer description of the function and will
+     * give all the necessary details.
+     *
+     * @param {String} tag - descriptive tag
+     * @returns {Element} element
      */
     function make(tag) {
 
@@ -815,7 +824,7 @@
     ```javascript
     function Calculator() {
 
-      // TODO: total should be configurable by an options param
+      // @todo total should be configurable by an options param
       this.total = 0;
 
       return this;
@@ -876,7 +885,7 @@
 
     ```javascript
     // bad
-    var foo = function () {
+    var foo = function() {
         alert('hello');
     };
 
@@ -985,9 +994,17 @@
     };
     ```
 
-  - Additional trailing comma: **Nope.** This can cause problems with IE6/7 and IE9 if it's in quirksmode. Also, in some implementations of ES3 would add length to an array if it had an additional trailing comma. This was clarified in ES5 ([source](http://es5.github.io/#D)):
+  - Additional trailing comma: **Nope.** This can cause problems with IE6/7 and
+    IE9 if it's in quirksmode. Also, in some implementations of ES3 would add
+    length to an array if it had an additional trailing comma. This was
+    clarified in ES5 ([source](http://es5.github.io/#D)):
 
-  > Edition 5 clarifies the fact that a trailing comma at the end of an ArrayInitialiser does not add to the length of the array. This is not a semantic change from Edition 3 but some implementations may have previously misinterpreted this.
+  > Edition 5 clarifies the fact that a trailing comma at the end of an
+    ArrayInitialiser does not add to the length of the array. This is not a
+    semantic change from Edition 3 but some implementations may have previously
+    misinterpreted this.
+
+    It is fine to use the extra comma in node.js environment.
 
     ```javascript
     // bad
@@ -1039,6 +1056,25 @@
       return name;
     })();
     ```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## File Headers
+
+All JavaScript files should have the following file header and footer:
+
+    ```javascript
+    //  -*- coding: utf-8 -*-
+    //  filename.js
+    //  created: 2014-05-22 08:10:10
+    //
+
+
+
+    //
+    //  filename.js ends here
+
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1183,7 +1219,9 @@
     });
     ```
 
-  - Use a leading underscore `_` when naming private properties
+  - Use a leading underscore `_` when naming private properties (note that
+    this is not necessary when using the module pattern or when protecting
+    ES5 style variables with `Object.create()`)
 
     ```javascript
     // bad
@@ -1398,6 +1436,34 @@
 **[⬆ back to top](#table-of-contents)**
 
 
+## Functional Style
+
+  - Avoid generic for-loops (i.e. `for (i = 0; i < array.length; i += 1))
+    because
+    - They make code difficult to read
+    - They may have all kinds of side effects
+  - Prefer using functional programming constructs such as
+    - `map`: to convert an array to another array
+    - `reduce`: to reduce an array of items into a single value
+    - `filter`: to filter out unwanted elements
+  - Familiarize yourself with all different functions available in the
+    [lodash](http://lodash.com/docs) library. When it comes to dealing with
+    collections, most of the time it already has what you would otherwise
+    have to implement yourself.
+  - Using these functions makes it easy for the reader to immediately
+    understand what the code is doing and they don't (must not) have
+    side effects.
+  - `forEach` is the only exception where we allow the code inside the loop to
+    have side effects since it has been used for drop-in replacement for more
+    traditional `for (i = 0; i < array.length; i += 1)` construct.
+  - Sometimes though, for performance reasons for large collections, you may
+    want to consider replacing subsequent functional constructs with single
+    for-loop where you do many things at once. This should be vare rare however.
+
+
+**[⬆ back to top](#table-of-contents)**
+
+
 ## Events
 
   - When attaching data payloads to events (whether DOM events or something more proprietary like Backbone events), pass a hash instead of a raw value. This allows a subsequent contributor to add more data to the event payload without finding and updating every handler for the event. For example, instead of:
@@ -1431,31 +1497,10 @@
 
 ## Modules
 
-  - The module should start with a `!`. This ensures that if a malformed module forgets to include a final semicolon there aren't errors in production when the scripts get concatenated. [Explanation](https://github.com/airbnb/javascript/issues/44#issuecomment-13063933)
-  - The file should be named with camelCase, live in a folder with the same name, and match the name of the single export.
-  - Add a method called `noConflict()` that sets the exported module to the previous version and returns this one.
+  - In Node.js files should be named with camelCase.
+  - In Ember projects files should be named with hyphens (e.g. `route-header.js`).
   - Always declare `'use strict';` at the top of the module.
 
-    ```javascript
-    // fancyInput/fancyInput.js
-
-    !function (global) {
-      'use strict';
-
-      var previousFancyInput = global.FancyInput;
-
-      function FancyInput(options) {
-        this.options = options || {};
-      }
-
-      FancyInput.noConflict = function noConflict() {
-        global.FancyInput = previousFancyInput;
-        return FancyInput;
-      };
-
-      global.FancyInput = FancyInput;
-    }(this);
-    ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1531,13 +1576,25 @@
 
 ## Testing
 
-  - **Yup.**
+### Testing private functions in Node.js
+
+  - Gather all private functions in private variable called `internals`
+  - Expose the `internals` variable when running tests
 
     ```javascript
-    function () {
-      return true;
+    var internals = {};
+
+    internals.myPrivateFunction = function () {
+        // do private stuff
+    };
+
+    // in the end of the module expose internals for tests
+    if (process.env.NODE_ENV === 'test') {
+        exports.internals = internals;
     }
     ```
+
+
 
 **[⬆ back to top](#table-of-contents)**
 
