@@ -749,13 +749,37 @@
 
 ## Comments
 
-  - Use `/** ... */` for multiline comments. Include a description, specify
+  - Use following format for function/class comments:
+
+    ```javascript
+    /**
+     *
+     */
+    ```
+
+  - Other (random) multiline comments should take either of 
+    the following two forms:
+   
+    ```javascript
+    /*
+     *
+     */
+     
+    //
+    //
+    //
+    ```
+  
+  - In function comments, include description, specify
     types and values for necessary parameters and return values.
   - First sentence of the function docstring should fit on one line and
     should prescribe the function's effect as a command ("Do this",
     "Return that"), not as a description; e.g. don't write "Returns the
     pathname ..."
   - Use [JSDoc](http://usejsdoc.org)
+  - You don't always have to document every parameter and return value if 
+    they are obvious.
+  - Use `@typedef` to specify complex structures.
 
     ```javascript
     // bad
