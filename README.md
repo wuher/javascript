@@ -109,11 +109,6 @@
       class: 'alien'
     };
 
-    // bad
-    var superman = {
-      klass: 'alien'
-    };
-
     // good
     var superman = {
       type: 'alien'
@@ -757,19 +752,19 @@
      */
     ```
 
-  - Other (random) multiline comments should take either of 
+  - Other (random) multiline comments should take either of
     the following two forms:
-   
+
     ```javascript
     /*
      *
      */
-     
+
     //
     //
     //
     ```
-  
+
   - In function comments, include description, specify
     types and values for necessary parameters and return values.
   - First sentence of the function docstring should fit on one line and
@@ -777,7 +772,7 @@
     "Return that"), not as a description; e.g. don't write "Returns the
     pathname ..."
   - Use [JSDoc](http://usejsdoc.org)
-  - You don't always have to document every parameter and return value if 
+  - You don't always have to document every parameter and return value if
     they are obvious.
   - Use `@typedef` to specify complex structures.
 
@@ -816,12 +811,6 @@
   - Use `//` for single line comments. Place single line comments on a newline above the subject of the comment. Put an empty line before the comment.
 
     ```javascript
-    // bad
-    var active = true;  // is current tab
-
-    // good
-    // is current tab
-    var active = true;
 
     // bad
     function getType() {
@@ -1303,20 +1292,6 @@ All JavaScript files should have the following file header and footer:
     })();
     ```
 
-  - Name your functions. This is helpful for stack traces.
-
-    ```javascript
-    // bad
-    var log = function (msg) {
-      console.log(msg);
-    };
-
-    // good
-    var log = function log(msg) {
-      console.log(msg);
-    };
-    ```
-
   - **Note:** IE8 and below exhibit some quirks with named function expressions.  See [http://kangax.github.io/nfe/](http://kangax.github.io/nfe/) for more info.
 
 **[⬆ back to top](#table-of-contents)**
@@ -1324,54 +1299,7 @@ All JavaScript files should have the following file header and footer:
 
 ## Accessors
 
-  - Accessor functions for properties are not required
-  - If you do make accessor functions use getVal() and setVal('hello')
-
-    ```javascript
-    // bad
-    dragon.age();
-
-    // good
-    dragon.getAge();
-
-    // bad
-    dragon.age(25);
-
-    // good
-    dragon.setAge(25);
-    ```
-
-  - If the property is a boolean, use isVal() or hasVal()
-
-    ```javascript
-    // bad
-    if (!dragon.age()) {
-      return false;
-    }
-
-    // good
-    if (!dragon.hasAge()) {
-      return false;
-    }
-    ```
-
-  - It's okay to create get() and set() functions, but be consistent.
-
-    ```javascript
-    function Jedi(options) {
-      options || (options = {});
-      var lightsaber = options.lightsaber || 'blue';
-      this.set('lightsaber', lightsaber);
-    }
-
-    Jedi.prototype.set = function (key, val) {
-      this[key] = val;
-    };
-
-    Jedi.prototype.get = function (key) {
-      return this[key];
-    };
-    ```
+  - Accessor functions (simle getters and setters) for properties are not required
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1406,7 +1334,7 @@ All JavaScript files should have the following file header and footer:
     };
     ```
 
-  - Methods can return `this` to help with method chaining.
+  - Methods should return `this` to help with method chaining.
 
     ```javascript
     // bad
